@@ -93,3 +93,13 @@ CheckOptions:
     value: 'i,j,k,n,id,x,y,z,w,r,g,b,a,uv,dt,rc,fp,argc,argv,p,v'
   - key: misc-include-cleaner.IgnoreHeaders
     value: 'Windows Kits[\\/]10[\\/]Include[\\/].*\.h'
+
+  # Identifier Lengths
+  - key: readability-identifier-length.MinimumParameterNameLength
+    value: 1
+  - key: readability-identifier-length.MinimumVariableNameLength
+    value: 1
+
+  # Misc Rules
+  - key: misc-non-private-member-variables-in-classes.IgnoreClassesWithAllMemberVariablesBeingPublic
+    value: true
