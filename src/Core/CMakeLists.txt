@@ -1,5 +1,9 @@
 add_library(Reaper.Core STATIC 
-    Temp.cpp
+    DirectoryEntry.hpp
+    ProjectRule.hpp
+    RuleMatcher.hpp
+    RuleMatcher.cpp
+    StringUtils.hpp
 )
 
 add_library(Reaper::Core ALIAS Reaper.Core)

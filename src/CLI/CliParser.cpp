@@ -2,18 +2,17 @@
 
 #include <CLI/CLI.hpp>
 
-#include <algorithm>
 #include <expected>
 #include <filesystem>
-#include <thread>
+
+#include "ConfigTypes.hpp"
 
 namespace Reaper::CLI
 {
-std::expected<CliOptions, int> ParseCommandLine(int argc, wchar_t** argv)
+std::expected<Config::CliOverrides, int> ParseCommandLine(int argc, wchar_t** argv)
 {
-    CliOptions options{};
+    Config::CliOverrides options{};
     options.TargetPath = std::filesystem::current_path();
-    options.Threads = std::max(1U, std::thread::hardware_concurrency());
 
     ::CLI::App app{"Reaper - A swift scythe for project artifacts"};
     app.set_version_flag("-V,--version", "0.1.0");
@@ -34,14 +33,15 @@ std::expected<CliOptions, int> ParseCommandLine(int argc, wchar_t** argv)
         "--older-than", options.Filters.OlderThan, "Filter projects untouched for a duration (e.g., 30d, 2w)");
     filterGroup->add_option(
         "--min-size", options.Filters.MinSize, "Filter projects with artifacts larger than a size (e.g., 500MB, 2GB)");
-    filterGroup->add_option("-d,--max-depth", options.Filters.MaxDepth, "Limit the maximum directory depth");
+    filterGroup->add_option("-d,--max-depth", options.Filters.MaxDepth, "Limit the maximum directory depth")
+        ->check(::CLI::NonNegativeNumber);
 
     filterGroup
         ->add_option("-e,--ecosystem", options.Filters.Ecosystems, "Target specific ecosystems (e.g., unity, unreal)")
         ->delimiter(',');
-    filterGroup->add_option("-E,--exclude-ecosystem", options.Filters.ExcludeEcosystems, "Exclude specific ecosystems")
+    filterGroup->add_option("-E,--exclude-ecosystem", options.Filters.ExcludedEcosystems, "Exclude specific ecosystems")
         ->delimiter(',');
-    filterGroup->add_option("--exclude-dir", options.Filters.ExcludeDirectories, "Exclude specific directories")
+    filterGroup->add_option("--exclude-dir", options.Filters.ExcludedDirectories, "Exclude specific directories")
         ->delimiter(',');
 
     try
