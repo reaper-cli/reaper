@@ -2,6 +2,7 @@ find_package(GTest CONFIG REQUIRED)
 
 add_executable(Reaper.Tests 
     main.cpp
+    Core/StringUtilsTest.cpp
 )
 
 target_link_libraries(Reaper.Tests 
