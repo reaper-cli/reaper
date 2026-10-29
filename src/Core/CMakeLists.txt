@@ -4,6 +4,7 @@ add_library(Reaper.Core STATIC
     RuleMatcher.hpp
     RuleMatcher.cpp
     StringUtils.hpp
+    StringUtils.cpp
 )
 
 add_library(Reaper::Core ALIAS Reaper.Core)

@@ -4,18 +4,6 @@
 
 namespace Reaper::Core
 {
-TEST(CaseInsensitiveCompareTest, ToLowerConvertsUppercase)
-{
-    EXPECT_EQ(CaseInsensitiveCompare::ToLower(L'A'), L'a');
-    EXPECT_EQ(CaseInsensitiveCompare::ToLower(L'Z'), L'z');
-
-    EXPECT_EQ(CaseInsensitiveCompare::ToLower(L'a'), L'a');
-    EXPECT_EQ(CaseInsensitiveCompare::ToLower(L'z'), L'z');
-
-    EXPECT_EQ(CaseInsensitiveCompare::ToLower(L'@'), L'@');
-    EXPECT_EQ(CaseInsensitiveCompare::ToLower(L'['), L'[');
-}
-
 TEST(CaseInsensitiveCompareTest, EqualsIgnoresCase)
 {
     EXPECT_TRUE(CaseInsensitiveCompare::Equals(L"", L""));
@@ -31,7 +19,7 @@ TEST(CaseInsensitiveCompareTest, EqualsDetectsMismatches)
 
 TEST(CaseInsensitiveCompareTest, OperatorSortsCaseInsensitively)
 {
-    constexpr CaseInsensitiveCompare compare{};
+    CaseInsensitiveCompare compare{};
 
     EXPECT_FALSE(compare(L"abc", L"ABC"));
 
