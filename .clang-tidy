@@ -64,6 +64,10 @@ CheckOptions:
     value: m_
   - key: readability-identifier-naming.PrivateMemberSuffix
     value: ''
+  - key: readability-identifier-naming.ProtectedMemberCase
+    value: camelBack
+  - key: readability-identifier-naming.ProtectedMemberPrefix
+    value: m_
   - key: readability-identifier-naming.PublicMemberCase
     value: CamelCase
   - key: readability-identifier-naming.ClassMemberCase
