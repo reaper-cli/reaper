@@ -2,6 +2,7 @@ find_package(GTest CONFIG REQUIRED)
 
 add_executable(Reaper.Tests 
     main.cpp
+    Core/RuleMatcherTest.cpp
     Core/StringUtilsTest.cpp
 )
 
